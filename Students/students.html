@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Students</title>
+  <link rel="stylesheet" href="students.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="../index.html">Home</a>
+      <a href="../Dashboard.html">Dashboard</a>
+      <a href="../Courses/courses.html">Courses</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="avatar">ST</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h4>Students</h4>
+      <ul>
+        <li>Add Student</li>
+        <li>View Student</li>
+        <li>Manage Records</li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+      <div class="header-bar"></div>
+
+      <div class="course-title">
+        Student Management
+      </div>
+
+      <!-- Add Student -->
+      <div class="card">
+        <div class="label">Add Student</div>
+
+        <input type="text" id="fname" placeholder="First Name">
+        <input type="text" id="lname" placeholder="Last Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="classroom" placeholder="Classroom">
+
+        <button onclick="addStudent()">Add Student</button>
+      </div>
+
+      <!-- View Student -->
+      <div class="card">
+        <div class="label">View Student</div>
+
+        <input type="number" id="studentID" placeholder="Enter Student ID">
+        <button onclick="viewStudent()">View Student</button>
+
+        <div id="message" class="message"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="students.js"></script>
+
+</body>
+</html>

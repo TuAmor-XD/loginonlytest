@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .register-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .register-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .register-sub {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .register-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .register-message.success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .register-message.error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        body.dark .register-container {
+            background-color: #2d2d2d;
+        }
+        body.dark .register-title {
+            color: #fff;
+        }
+        body.dark .register-sub {
+            color: #aaa;
+        }
+        body.dark .input-group label {
+            color: #fff;
+        }
+        body.dark .input-group input {
+            background-color: #3d3d3d;
+            border-color: #555;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="theme-toggle" id="themeToggle">
+        Dark mode
+    </div>
+
+    <div class="register-container">
+        <div class="register-title">
+            Student Registration
+        </div>
+        <div class="register-sub">
+            Create your account with the ID provided by admin
+        </div>
+
+        <div class="register-message" id="registerMessage"></div>
+
+        <form onsubmit="handleRegister(event)">
+            <div class="input-group">
+                <label>Assigned Student ID</label>
+                <input type="text" id="studentID" placeholder="e.g., 202400001" required>
+            </div>
+
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" id="firstName" placeholder="Enter first name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter last name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="student@example.com" required>
+            </div>
+
+            <div class="input-group">
+                <label>Classroom</label>
+                <input type="text" id="classroom" placeholder="e.g., Grade 10-A" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Create a password" required minlength="6">
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            </div>
+
+            <button type="submit">
+                Register Account
+            </button>
+        </form>
+
+        <div class="back-link">
+            <a href="login.html">← Back to Login</a>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script>
+        // Theme Toggle
+        const toggle = document.getElementById("themeToggle");
+
+        if(localStorage.getItem("theme") === "dark"){
+            document.body.classList.add("dark");
+            if(toggle) toggle.textContent = "☀️";
+        }
+
+        if(toggle){
+            toggle.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+
+                if(document.body.classList.contains("dark")){
+                    localStorage.setItem("theme","dark");
+                    toggle.textContent = "☀️";
+                } else {
+                    localStorage.setItem("theme","light");
+                    toggle.textContent = "🌙";
+                }
+            });
+        }
+
+        // Initialize database
+        DB.initDatabase();
+
+        // Handle Registration
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const studentID = document.getElementById("studentID").value.trim();
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const classroom = document.getElementById("classroom").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const messageElement = document.getElementById("registerMessage");
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                messageElement.textContent = "Passwords do not match.";
+                messageElement.className = "register-message error";
+                return;
+            }
+
+            // Validate password length
+            if (password.length < 6) {
+                messageElement.textContent = "Password must be at least 6 characters long.";
+                messageElement.className = "register-message error";
+                return;
+            }
+
+            // Register student using database module
+            const result = DB.registerStudent(studentID, password, firstName, lastName, email, classroom);
+
+            if (result.success) {
+                messageElement.textContent = result.message + " Redirecting to login...";
+                messageElement.className = "register-message success";
+                
+                // Clear form
+                event.target.reset();
+                
+                // Redirect to login after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } else {
+                messageElement.textContent = result.message;
+                messageElement.className = "register-message error";
+            }
+        }
+    </script>
+
+</body>
+</html>

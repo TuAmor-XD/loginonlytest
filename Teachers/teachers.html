@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teachers</title>
+  <link rel="stylesheet" href="teachers.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="../index.html">Home</a>
+      <a href="../Dashboard.html">Dashboard</a>
+      <a href="../Courses/courses.html">Courses</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="avatar">TC</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h4>Teachers</h4>
+      <ul>
+        <li>Add Teacher</li>
+        <li>View Teacher</li>
+        <li>Manage Records</li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+      <div class="header-bar"></div>
+
+      <div class="course-title">
+        Teacher Management
+      </div>
+
+      <!-- Add Teacher -->
+      <div class="card">
+        <div class="label">Add Teacher</div>
+
+        <input type="text" id="tname" placeholder="Teacher Name">
+        <input type="email" id="temail" placeholder="Email">
+        <input type="text" id="homeroom" placeholder="Homeroom">
+
+        <button onclick="addTeacher()">Add Teacher</button>
+        <div id="message" class="message"></div>
+      </div>
+
+      <!-- View Teacher -->
+      <div class="card">
+        <div class="label">View Teacher</div>
+
+        <input type="number" id="teacherID" placeholder="Enter Teacher ID">
+        <button onclick="viewTeacher()">View Teacher</button>
+
+        <div id="message" class="message"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="teachers.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+@font-face{
+  font-family:'Plus Jakarta Sans';
+  src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:#f5f6fa;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#f3f4f6;
+  padding:12px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-left a{
+  margin-right:20px;
+  text-decoration:none;
+  color:#555;
+}
+
+.nav-left a:hover{color:#b91c1c;}
+
+.avatar{
+  background:#b91c1c;
+  color:#fff;
+  border-radius:50%;
+  padding:10px;
+}
+
+/* LAYOUT */
+.container{display:flex;height:calc(100vh - 60px);}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:#fff;
+  padding:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+.sidebar h4{color:#b91c1c;margin-bottom:10px;}
+
+.sidebar li{
+  list-style:none;
+  padding:8px 0;
+  color:#555;
+}
+
+.sidebar li:hover{color:#000;}
+
+/* MAIN */
+.main{flex:1;padding:30px;}
+
+.header-bar{
+  background:#b91c1c;
+  height:50px;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+.course-title{
+  font-size:24px;
+  color:#b91c1c;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+/* CARDS */
+.card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.label{
+  font-size:12px;
+  color:#9ca3af;
+  margin-bottom:10px;
+}
+
+button{
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:#b91c1c;
+  color:#fff;
+  cursor:pointer;
+}
+
+button:hover{background:#991b1b;}

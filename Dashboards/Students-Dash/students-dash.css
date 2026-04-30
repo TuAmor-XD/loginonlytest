@@ -1,0 +1,249 @@
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2) format('woff2')}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:linear-gradient(135deg,#7f1d1d,#b91c1c,#7f1d1d);
+min-height:100vh;
+color:#111;
+}
+
+body:not(.dashboard){
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.login-container{
+width:100%;
+max-width:420px;
+background:rgba(255,255,255,.95);
+padding:32px;
+border-radius:18px;
+box-shadow:0 25px 60px rgba(0,0,0,.25)
+}
+
+.login-title{font-size:22px;font-weight:700;margin-bottom:6px}
+.login-sub{font-size:13px;color:#777;margin-bottom:20px}
+
+.input-group{margin-bottom:16px}
+
+label{
+font-size:13px;
+font-weight:600;
+display:block;
+margin-bottom:6px
+}
+
+input{
+width:100%;
+padding:12px 14px;
+border-radius:12px;
+border:1px solid #ddd;
+background:#f7f7f7;
+font-size:14px;
+transition:.2s
+}
+
+input:focus{
+outline:none;
+border-color:#b91c1c;
+background:#fff
+}
+
+button{
+width:100%;
+padding:13px;
+border:none;
+border-radius:12px;
+background:#b91c1c;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+transition:.2s
+}
+
+button:hover{background:#991b1b}
+
+.dashboard{
+width:100%;
+min-height:100vh;
+background:#f5f6fa;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+background:#f3f4f6;
+}
+
+.top-left{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.brand{
+font-weight:700;
+color:#b91c1c;
+}
+
+.nav-link{
+color:#555;
+cursor:pointer;
+position: relative;
+text-decoration: none;
+}
+
+.nav-link:hover{
+color:#8B0000;
+}
+
+.header-bar{
+background:#b91c1c;
+color:#fff;
+padding:18px 30px;
+font-weight:600;
+font-size:18px;
+}
+
+.main{
+padding:30px;
+}
+
+.welcome{
+font-size:28px;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:#fff;
+border-radius:14px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+overflow:hidden;
+}
+
+.card-header{
+background:#b91c1c;
+color:#fff;
+padding:14px 18px;
+font-weight:600;
+}
+
+.card-body{
+padding:20px;
+}
+
+.empty{
+color:#9ca3af;
+text-align:center;
+}
+
+.large{height:120px}
+.small{height:120px}
+.full{grid-column:span 2}
+
+.filters{
+display:flex;
+gap:12px;
+padding:15px;
+}
+
+.filter{
+background:#f3f4f6;
+padding:10px 14px;
+border-radius:10px;
+font-size:13px;
+color:#555;
+}
+
+.filter.search{
+flex:1;
+}
+
+#themeToggle{
+position:fixed;
+top:56px;
+right:20px;
+padding:8px 12px;
+border-radius:20px;
+background:rgba(255,255,255,0.2);
+color:#fff;
+cursor:pointer;
+backdrop-filter:blur(10px);
+}
+
+body.dark{
+background:#0f0f0f;
+color:#eee;
+}
+
+body.dark .login-container{
+background:#1a1a1a;
+}
+
+body.dark input{
+background:#111;
+border:1px solid #333;
+color:#eee;
+}
+
+body.dark input::placeholder{color:#777}
+body.dark label{color:#bbb}
+body.dark .login-sub{color:#888}
+
+body.dark button{
+background:#ef4444;
+}
+body.dark button:hover{
+background:#dc2626;
+}
+
+body.dark.dashboard{
+background:#0f0f0f;
+}
+
+body.dark .topbar{
+background:#111;
+}
+
+body.dark .nav-link{
+color:#aaa;
+}
+
+body.dark .nav-link.active{
+color:#fff;
+border-bottom:2px solid #ef4444;
+}
+
+body.dark .header-bar{
+background:#991b1b;
+}
+
+body.dark .card{
+background:#1a1a1a;
+color:#eee;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+body.dark .filter{
+background:#222;
+color:#aaa;
+}
+
+body.dark .empty{
+color:#666;
+}

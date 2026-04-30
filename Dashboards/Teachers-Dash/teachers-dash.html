@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard - Student Portal</title>
+  <link rel="stylesheet" href="teachers-dash.css">
+  <style>
+    .logout-btn {
+      padding: 8px 16px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .logout-btn:hover {
+      background-color: #c82333;
+    }
+    .teacher-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="../../index.html">Home</a>
+      <a href="../../Courses/courses.html">Courses</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="teacher-info">
+        <span id="teacherName" style="color: #fff;">Teacher</span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h4>Teacher Panel</h4>
+      <ul>
+        <li>Dashboard</li>
+        <li>My Classes</li>
+        <li>Assignments</li>
+      </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <div class="header-bar"></div>
+
+      <div class="course-title">
+        Teacher Dashboard
+      </div>
+
+      <div class="card">
+        <div class="label">My Classes</div>
+        <p>No classes assigned yet</p>
+      </div>
+
+      <div class="card">
+        <div class="label">Assignments</div>
+        <p>No assignments created</p>
+      </div>
+
+      <div class="card">
+        <div class="label">Quick Actions</div>
+        <button>Create Assignment</button>
+        <button id="stu">Add or View Students</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Load database first for authentication check -->
+  <script src="../../database.js"></script>
+  <script src="teachers-dash.js"></script>
+</body>
+</html>

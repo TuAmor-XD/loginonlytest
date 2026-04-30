@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .login-error.show {
+            display: block;
+        }
+        .login-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .login-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="theme-toggle" id="themeToggle">
+        Dark mode
+    </div>
+
+    <div class="login-container">
+
+        <div class="login-title">
+            Student Portal
+        </div>
+
+        <div class="login-sub">
+            Sign in to your account
+        </div>
+
+        <div class="login-error" id="loginError"></div>
+
+        <form onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <label>User ID</label>
+                <input type="text" id="userID" placeholder="e.g., 202400001" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+
+            <button type="submit">
+                Sign In
+            </button>
+        </form>
+
+        <div class="login-links">
+            <a href="register.html">New Student? Register Here</a>
+            <br><br>
+            <a href="#" onclick="alert('Default Admin Login:\nUserID: 100000001\nPassword: admin123'); return false;">Forgot Password?</a>
+        </div>
+
+    </div>
+
+    <!-- Load database first, then script -->
+    <script src="database.js"></script>
+    <script>
+        // Theme Toggle
+        const toggle = document.getElementById("themeToggle");
+
+        if(localStorage.getItem("theme") === "dark"){
+            document.body.classList.add("dark");
+            if(toggle) toggle.textContent = "☀️";
+        }
+
+        if(toggle){
+            toggle.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+
+                if(document.body.classList.contains("dark")){
+                    localStorage.setItem("theme","dark");
+                    toggle.textContent = "☀️";
+                } else {
+                    localStorage.setItem("theme","light");
+                    toggle.textContent = "🌙";
+                }
+            });
+        }
+
+        // Initialize database on page load
+        DB.initDatabase();
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const userID = document.getElementById("userID").value.trim();
+            const password = document.getElementById("password").value;
+            const errorElement = document.getElementById("loginError");
+
+            // Step 1: Check if user exists in DB
+            if (!DB.userExists(userID)) {
+                errorElement.textContent = "User not found. Please contact admin to create an account.";
+                errorElement.classList.add("show");
+                return;
+            }
+
+            // Step 2: Check credentials are correct
+            const validation = DB.validateCredentials(userID, password);
+            if (!validation.success) {
+                errorElement.textContent = validation.message;
+                errorElement.classList.add("show");
+                return;
+            }
+
+            // Step 3: Check account type in DB
+            const accountType = DB.getAccountType(userID);
+            if (!accountType) {
+                errorElement.textContent = "Unable to determine account type. Please contact support.";
+                errorElement.classList.add("show");
+                return;
+            }
+
+            // Step 4: Open appropriate dashboard based on account type
+            const dashboardURL = DB.getDashboardURL(accountType);
+            if (!dashboardURL) {
+                errorElement.textContent = "No dashboard configured for this account type.";
+                errorElement.classList.add("show");
+                return;
+            }
+
+            // Store session and redirect
+            sessionStorage.setItem('currentUser', JSON.stringify(validation.user));
+            sessionStorage.setItem('loginTime', new Date().toISOString());
+            
+            // Redirect to the appropriate dashboard
+            window.location.href = dashboardURL;
+        }
+    </script>
+
+</body>
+</html>

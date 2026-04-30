@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Student Portal</title>
+
+    <link rel="stylesheet" href="students-dash.css">
+    <style>
+        .logout-btn {
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body class="dashboard">
+
+    <div class="topbar">
+        <div class="top-left">
+            <span id="BMHS" class="brand">BMHS</span>
+            <span id="courses" class="nav-link">Courses</span>
+        </div>
+
+        <div class="top-right">
+            <span class="user" id="welcomeUser">Welcome, Student</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div> 
+        
+    </div>
+
+    <div class="header-bar">
+        Student Dashboard
+    </div>
+
+    <div id="themeToggle" onclick="toggleTheme()">
+        🌙
+    </div>
+
+    <div class="main">
+
+        <div class="welcome">
+            Welcome back 👋
+        </div>
+
+        <div class="grid">
+
+            <div class="card large">
+                <div class="card-header">Courses</div>
+                <div class="card-body">
+                    <p class="empty">View your enrolled subjects</p>
+                </div>
+            </div>
+<!--
+            <div class="card small">
+                <div class="card-header">Assignments</div>
+                <div class="card-body">
+                    <p class="empty">Check pending work</p>
+                </div>
+            </div> -->
+
+            <div class="card small">
+                <div class="card-header">Grades</div>
+                <div class="card-body">
+                    <p class="empty">See your performance</p>
+                </div>
+            </div>
+
+            <div class="card full">
+                <div class="card-header">Announcements</div>
+                <div class="card-body">
+                    <p class="empty">Latest school updates will appear here</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Load database first for authentication check -->
+    <script src="../../database.js"></script>
+    <script src="students-dash.js"></script>
+
+</body>
+</html>
